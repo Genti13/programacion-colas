@@ -3,5 +3,9 @@
 	<stdio.h>
 	<stdlib.h>
 
-1651808064 source:e:\unlam\programacion & tcp\programacion\colas\cola_estatica\cola\cola.c
+1651816498 source:e:\unlam\programacion & tcp\programacion\colas\cola_estatica\cola\cola.c
+	"cola.h"
+	<string.h>
+
+1651808624 e:\unlam\programacion & tcp\programacion\colas\cola_estatica\cola\cola.h
 

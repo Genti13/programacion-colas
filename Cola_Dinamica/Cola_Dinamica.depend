@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1584205420 source:e:\unlam\programacion & tcp\programacion\colas\cola_dinamica\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1651867358 source:e:\unlam\programacion & tcp\programacion\colas\cola_dinamica\cola\cola.c
+	"cola.h"
+
+1651867148 e:\unlam\programacion & tcp\programacion\colas\cola_dinamica\cola\cola.h
+	<stdlib.h>
+	<string.h>
+

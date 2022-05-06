@@ -16,33 +16,34 @@ int colaLlena(const tCola *p, unsigned cantBytes)
 
 int ponerEnCola(tCola *p, const void *d, unsigned cantBytes)
 {
-    unsigned ini, fin;
+    unsigned ini, fin; ///Se refieren al pedazo de bloque si es que hay que partirlo en dos por falta de espacio.
 
-    if(p->tamDisp < sizeof(unsigned) + cantBytes) //Si la cola esta llena
+    if(p->tamDisp < sizeof(unsigned) + cantBytes) ///Si la cola esta llena
     {
         return 0;
     }
 
-    p->tamDisp -= sizeof(unsigned) + cantBytes; //como voy a agregar, redusco el tamano disponible
+    p->tamDisp -= sizeof(unsigned) + cantBytes; ///Como voy a agregar, redusco el tamano disponible
 
     /**Parte 1**/
-    //Parte 1 Pone primero el tamano de los bytes
-    if((ini = minimo(sizeof(cantBytes), TAM_COLA - p->ult)) != 0)
+    ///Parte 1 Pone primero el tamano de los bytes
+    if((ini = minimo(sizeof(cantBytes), TAM_COLA - p->ult)) != 0)///Si hay espacio en la cola para todo el bloque ini = sizeof(cantBytes), sino es la primer parte del bloque partido en dos.
     {
-        memcpy(p->cola + p->ult, &cantBytes, ini);
+        memcpy(p->cola + p->ult, &cantBytes, ini);///Escribo todo lo que se pueda
     }
 
-    if((fin = sizeof(cantBytes)-ini) != 0)
+    if((fin = sizeof(cantBytes)-ini) != 0)///Va a ser 0 si el bloque nunca se partio en dos.
     {
-        memcpy(p->cola, ((char *)&cantBytes) + ini,fin);
+        memcpy(p->cola, ((char *)&cantBytes) + ini,fin);///Escribo el resto del bloque
     }
 
     /**END_Parte 1**/
 
-    p->ult = fin ? fin : p->ult + ini;
+    p->ult = fin ? fin : p->ult + ini; ///fin es 0? si lo es p->ult = p->ult + ini; si no lo es p->ult = fin
+    ///Si hubo corte en el bloque voy a donde termino la ultima mitad para decir que es el ulimo elemento de la cola.
 
     /**Parte 2**/
-    //Parte 2 Pone despues la data (d)
+    ///Parte 2 Pone despues la data (d)
     if((ini = minimo(cantBytes, TAM_COLA - p->ult))!= 0)
     {
         memcpy(p->cola + p->ult, d, ini);
@@ -52,8 +53,9 @@ int ponerEnCola(tCola *p, const void *d, unsigned cantBytes)
     {
         memcpy(p->cola, ((char*)d) + ini, fin);
     }
-    /**END_Parte 2**/
-    p->ult = fin ? fin : p->ult + ini;
+    /***END_Parte 2***/
+    p->ult = fin ? fin : p->ult + ini; ///fin es 0? si lo es p->ult = p->ult + ini; si no lo es p->ult = fin
+
 
     return 1;
 }
