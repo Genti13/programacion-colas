@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1651808030 source:e:\unlam\programacion & tcp\programacion\colas\cola_estatica\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1651808064 source:e:\unlam\programacion & tcp\programacion\colas\cola_estatica\cola\cola.c
+
